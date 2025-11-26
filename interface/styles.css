@@ -1,0 +1,599 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #144B50 0%, #2FA7A0 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* =====================================================
+   Container Principal
+   ===================================================== */
+
+   .container {
+    max-width: 1200px;
+    margin: 80px auto; /* AQUI — adiciona espaço acima */
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+
+/* =====================================================
+   Cabeçalho
+   ===================================================== */
+
+header {
+    background: linear-gradient(135deg, #144B50 0%, #2FA7A0 100%);
+    color: #ffffff;
+    padding: 60px 30px 40px 30px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+header .subtitle {
+    font-size: 1.1rem;
+    opacity: 0.95;
+    font-weight: 300;
+}
+
+/* =====================================================
+   Seção de Busca
+   ===================================================== */
+
+.search-section {
+    padding: 40px 30px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.search-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.search-container label {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 8px;
+}
+
+.help-text {
+    font-size: 0.9rem;
+    color: #6c757d;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.input-group {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+/* Campo de Input */
+#ticker-input {
+    flex: 1;
+    padding: 14px 18px;
+    font-size: 1rem;
+    border: 2px solid #dee2e6;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: #ffffff;
+    color: #495057;
+}
+
+#ticker-input:focus {
+    outline: none;
+    border-color: #1D6F78;
+    box-shadow: 0 0 0 3px rgba(29, 111, 120, 0.15);
+}
+
+#ticker-input::placeholder {
+    color: #adb5bd;
+}
+
+/* Botão de Buscar */
+#fetch-button {
+    padding: 14px 32px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #ffffff;
+    background: linear-gradient(135deg, #1D6F78 0%, #144B50 100%);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    box-shadow: 0 4px 6px rgba(29, 111, 120, 0.35);
+}
+
+#fetch-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(29, 111, 120, 0.45);
+}
+
+#fetch-button:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+#fetch-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* =====================================================
+   Mensagens de Status
+   ===================================================== */
+
+.status-message {
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    display: none;
+}
+
+.status-message:not(:empty) {
+    display: block;
+}
+
+.status-message.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.status-message.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+.status-message.warning {
+    background: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeeba;
+}
+
+.status-message.loading {
+    background: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+/* =====================================================
+   Seção de Dados
+   ===================================================== */
+
+.data-section {
+    padding: 40px 30px;
+    background: #ffffff;
+}
+
+/* Informações do Ticker */
+.ticker-info {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.ticker-info h2 {
+    font-size: 2.5rem;
+    color: #1D6F78;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.data-count {
+    font-size: 1.1rem;
+    color: #6c757d;
+    font-weight: 500;
+}
+
+/* =====================================================
+   Container do Gráfico
+   ===================================================== */
+
+.chart-container {
+    margin-bottom: 50px;
+    padding: 30px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.chart-container h3 {
+    font-size: 1.5rem;
+    color: #495057;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-align: center;
+}
+
+#price-chart {
+    max-height: 400px;
+    width: 100% !important;
+    height: 400px !important;
+}
+
+/* =====================================================
+   Container da Tabela
+   ===================================================== */
+
+.table-container {
+    margin-top: 30px;
+}
+
+.table-container h3 {
+    font-size: 1.5rem;
+    color: #495057;
+    margin-bottom: 20px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.table-wrapper {
+    overflow-x: auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border: 1px solid #e9ecef;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    font-size: 0.95rem;
+}
+
+/* Cabeçalho da Tabela */
+thead {
+    background: linear-gradient(135deg, #1D6F78 0%, #144B50 100%);
+    color: #ffffff;
+}
+
+thead th {
+    padding: 16px 18px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+thead th:first-child {
+    border-top-left-radius: 8px;
+}
+
+thead th:last-child {
+    border-top-right-radius: 8px;
+}
+
+/* Corpo da Tabela */
+tbody tr {
+    border-bottom: 1px solid #e9ecef;
+    transition: background-color 0.2s ease;
+}
+
+tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+}
+
+tbody tr:nth-child(even):hover {
+    background-color: #e9ecef;
+}
+
+tbody td {
+    padding: 14px 18px;
+    color: #495057;
+}
+
+tbody td:first-child {
+    font-weight: 500;
+    color: #1D6F78;
+}
+
+/* Alinhamento de valores numéricos */
+tbody td:nth-child(2),
+tbody td:nth-child(3),
+tbody td:nth-child(4),
+tbody td:nth-child(5),
+tbody td:nth-child(6) {
+    text-align: right;
+    font-family: 'Courier New', monospace;
+}
+
+/* =====================================================
+   Rodapé
+   ===================================================== */
+
+footer {
+    background: #f8f9fa;
+    padding: 25px 30px;
+    text-align: center;
+    color: #6c757d;
+    font-size: 0.9rem;
+    border-top: 1px solid #e9ecef;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* =====================================================
+   Responsividade
+   ===================================================== */
+
+
+   /* =====================================================
+   Filtros avançados
+   ===================================================== */
+
+.filter-section {
+    margin-top: 24px;
+    padding-top: 18px;
+    border-top: 1px solid #e9ecef;
+}
+
+.filter-title {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #495057;
+    margin-bottom: 16px;
+}
+
+.filter-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.filter-field {
+    flex: 1;
+    min-width: 180px;
+}
+
+.filter-field label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #495057;
+    margin-bottom: 4px;
+}
+
+.filter-field input {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #dee2e6;
+    background: #ffffff;
+    font-size: 0.9rem;
+    color: #495057;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.filter-field input:focus {
+    outline: none;
+    border-color: #0f766e;
+    box-shadow: 0 0 0 2px rgba(15, 118, 110, 0.2);
+}
+
+.filter-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+/* Botão de aplicar filtros reaproveitando o estilo do botão principal */
+#apply-filters-button {
+    padding: 10px 24px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #ffffff;
+    background: linear-gradient(135deg, #115e59 0%, #0f766e 100%);
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 8px rgba(15, 118, 110, 0.25);
+}
+
+#apply-filters-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 14px rgba(15, 118, 110, 0.35);
+}
+
+#apply-filters-button:active {
+    transform: translateY(0);
+}
+
+/* Botão de limpar estilo link */
+.link-button {
+    background: transparent;
+    border: none;
+    padding: 0;
+    font-size: 0.9rem;
+    color: #0f766e;
+    cursor: pointer;
+    text-decoration: underline;
+    align-self: center;
+}
+
+.link-button:hover {
+    color: #115e59;
+}
+
+/* Responsividade dos filtros */
+@media (max-width: 768px) {
+    .filter-row {
+        flex-direction: column;
+    }
+}
+
+
+/* Tablets */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        border-radius: 8px;
+    }
+
+    header {
+        padding: 30px 20px;
+    }
+
+    header h1 {
+        font-size: 1.6rem;
+    }
+
+    .search-section,
+    .data-section {
+        padding: 30px 20px;
+    }
+
+    .input-group {
+        flex-direction: column;
+    }
+
+    #fetch-button {
+        width: 100%;
+    }
+
+    .chart-container {
+        padding: 20px;
+    }
+
+    #price-chart {
+        height: 300px !important;
+    }
+
+    table {
+        font-size: 0.85rem;
+    }
+
+    thead th,
+    tbody td {
+        padding: 12px 14px;
+    }
+}
+
+/* Smartphones */
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 1.3rem;
+    }
+
+    header .subtitle {
+        font-size: 0.95rem;
+    }
+
+    .ticker-info h2 {
+        font-size: 2rem;
+    }
+
+    .chart-container h3,
+    .table-container h3 {
+        font-size: 1.2rem;
+    }
+
+    table {
+        font-size: 0.75rem;
+    }
+
+    thead th,
+    tbody td {
+        padding: 10px 8px;
+    }
+
+    /* Ocultar algumas colunas em telas muito pequenas */
+    thead th:nth-child(3),
+    tbody td:nth-child(3),
+    thead th:nth-child(4),
+    tbody td:nth-child(4) {
+        display: none;
+    }
+}
+
+/* =====================================================
+   Animações e Transições
+   ===================================================== */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.data-section {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* =====================================================
+   Scrollbar Personalizada (opcional)
+   ===================================================== */
+
+.table-wrapper::-webkit-scrollbar {
+    height: 8px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+    background: #1D6F78;
+    border-radius: 4px;
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #144B50;
+}
+
+.sten-logo {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.sten-logo img {
+    width: 190px; /* ajuste como preferir */
+    height: auto;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}

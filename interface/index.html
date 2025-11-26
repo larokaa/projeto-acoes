@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Coleta e Visualização de Dados Históricos de Ações - NASDAQ</title>
+    
+    <!-- Link para o arquivo de estilos CSS -->
+    <link rel="stylesheet" href="/styles.css">
+
+    <!-- Chart.js para criação de gráficos -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+    <!-- Logo STEN -->
+    <div class="sten-logo">
+        <img src="sten-logo.png" alt="STEN Logo">
+    </div>
+
+    <div class="container">
+        <!-- Cabeçalho da aplicação -->
+        <header>
+            <h1>Sistema de Coleta e Visualização de Dados Históricos de Ações</h1>
+            <p class="subtitle">Dados históricos da NASDAQ</p>
+        </header>
+
+        <!-- Seção de busca -->
+        <section class="search-section">
+            <div class="search-container">
+                <label for="ticker-input">Digite um ticker da NASDAQ:</label>
+                <p class="help-text">
+                    Exemplos: AAPL (Apple), MSFT (Microsoft), GOOGL (Google), AMZN (Amazon)
+                </p>
+
+                <div class="input-group">
+                    <input
+                        type="text"
+                        id="ticker-input"
+                        placeholder="Ex: AAPL"
+                        maxlength="10"
+                        autocomplete="off"
+                    />
+                    <button id="fetch-button" type="button">Buscar dados</button>
+                </div>
+
+                <!-- Mensagens de status -->
+                <div id="status-message" class="status-message"></div>
+            </div>
+        </section>
+
+        <!-- Seção de visualização de dados -->
+        <section class="data-section" id="data-section" style="display: none;">
+            <!-- Informações do ticker atual -->
+            <div class="ticker-info">
+                <h2 id="ticker-title">TICKER</h2>
+                <p id="data-count" class="data-count">0 registros encontrados</p>
+            </div>
+
+            <!-- Container do gráfico -->
+            <div class="chart-container">
+                <h3>Gráfico de Preços de Fechamento</h3>
+                <canvas id="price-chart"></canvas>
+            </div>
+
+            <!-- Container da tabela -->
+            <div class="table-container">
+                <h3>Histórico de Preços</h3>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Data</th>
+                                <th>Abertura</th>
+                                <th>Máxima</th>
+                                <th>Mínima</th>
+                                <th>Fechamento</th>
+                                <th>Volume</th>
+                            </tr>
+                        </thead>
+                        <tbody id="table-body">
+                            <!-- Linhas da tabela serão inseridas dinamicamente pelo JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rodapé -->
+        <footer>
+            <p>Sistema de Coleta e Visualização de Dados Históricos de Ações da NASDAQ</p>
+        </footer>
+    </div>
+
+    <!-- Script JavaScript para funcionalidade da interface -->
+    <script src="/script.js"></script>
+
+</body>
+</html>
