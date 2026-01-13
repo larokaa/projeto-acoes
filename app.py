@@ -159,12 +159,8 @@ def api_get_prices(ticker: str) -> Any:
         )
 
 
+import os
+
 if __name__ == "__main__":
-    print("==============================================")
-    print("Sistema de Coleta e Visualização de Dados Históricos de Ações")
-    print("==============================================")
-    print("[INFO] Inicializando banco de dados...")
-    database.init_db()
-    print("[INFO] Banco de dados pronto")
-    print("[INFO] Iniciando servidor Flask em http://127.0.0.1:5000")
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
