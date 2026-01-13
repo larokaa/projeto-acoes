@@ -584,16 +584,3 @@ footer p {
 .table-wrapper::-webkit-scrollbar-thumb:hover {
     background: #144B50;
 }
-
-.sten-logo {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    z-index: 1000;
-}
-
-.sten-logo img {
-    width: 190px; /* ajuste como preferir */
-    height: auto;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
-}
